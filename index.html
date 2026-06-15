@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mitchell Leahy — Frontend Developer</title>
+<meta name="description" content="Frontend developer who came from construction and industrial automation. React, Next.js, TypeScript. Builder of Vestige, Summarist, SustainRx.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@500;700;800&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --iron:#15171c;        /* page ground — charred steel, not pure black */
+  --gunmetal:#1f232b;    /* panel surface */
+  --seam:#31363f;        /* hairline seams / borders */
+  --bone:#e9e5dc;        /* primary text — worn paper */
+  --dust:#9b978d;        /* secondary text */
+  --torch:#ffa02e;       /* amber — heat, action, the accent that moves */
+  --torch-deep:#d97b12;
+  --gauge:#6fb7c9;       /* blueprint cyan — measurement, precision marks */
+  --stamp:#4fae6e;       /* inspection green — LIVE stamps only */
+  --display:'Big Shoulders Display',sans-serif;
+  --body:'IBM Plex Sans',sans-serif;
+  --mono:'IBM Plex Mono',monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  background:var(--iron);
+  color:var(--bone);
+  font-family:var(--body);
+  font-size:1.0625rem;
+  line-height:1.65;
+  overflow-x:hidden;
+}
+::selection{background:var(--torch);color:var(--iron)}
+
+/* ---------- focus / a11y ---------- */
+a,button{outline-offset:3px}
+a:focus-visible,button:focus-visible{outline:2px solid var(--gauge)}
+
+/* ---------- tape-measure scroll rail (desktop) ---------- */
+.rail{
+  position:fixed;left:0;top:0;bottom:0;width:56px;
+  border-right:1px solid var(--seam);
+  background:var(--iron);
+  z-index:50;
+  display:flex;flex-direction:column;align-items:center;
+}
+.rail-ticks{flex:1;width:100%;position:relative;overflow:hidden}
+.rail-ticks::before{
+  content:"";position:absolute;inset:0;
+  background-image:repeating-linear-gradient(to bottom,
+    var(--seam) 0 1px, transparent 1px 24px),
+    repeating-linear-gradient(to bottom,
+    transparent 0 119px, var(--dust) 119px 120px);
+  opacity:.7;
+}
+.rail-marker{
+  position:absolute;left:0;width:100%;height:2px;background:var(--torch);
+  top:0;box-shadow:0 0 12px rgba(255,160,46,.7);
+}
+.rail-readout{
+  font-family:var(--mono);font-size:.625rem;color:var(--dust);
+  padding:.9rem 0;writing-mode:vertical-rl;letter-spacing:.15em;
+  border-top:1px solid var(--seam);width:100%;text-align:center;
+}
+.rail-readout strong{color:var(--torch);font-weight:500}
+
+/* mobile progress bar */
+.bar{position:fixed;top:0;left:0;height:3px;width:100%;z-index:60;display:none}
+.bar i{display:block;height:100%;width:0;background:var(--torch)}
+
+/* ---------- layout shell ---------- */
+.shell{margin-left:56px}
+.wrap{max-width:1180px;margin:0 auto;padding:0 clamp(1.25rem,5vw,4rem)}
+
+/* ---------- nav ---------- */
+nav{
+  position:sticky;top:0;z-index:40;
+  background:color-mix(in srgb,var(--iron) 88%,transparent);
+  /* backdrop-filter:blur(10px); */
+  border-bottom:1px solid var(--seam);
+}
+.nav-in{display:flex;align-items:center;justify-content:space-between;padding:.85rem clamp(1.25rem,5vw,4rem);max-width:1180px;margin:0 auto}
+.brand{font-family:var(--display);font-weight:800;font-size:1.4rem;letter-spacing:.04em;color:var(--bone);text-decoration:none}
+.brand span{color:var(--torch)}
+.nav-links{display:flex;gap:1.75rem;list-style:none}
+.nav-links a{
+  font-family:var(--mono);font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--dust);text-decoration:none;transition:color .2s;
+}
+.nav-links a:hover{color:var(--torch)}
+
+/* ---------- hero ---------- */
+.hero{position:relative;min-height:92svh;display:flex;align-items:center;overflow:hidden}
+#sparks{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.hero-grid{
+  position:absolute;inset:0;pointer-events:none;opacity:.35;
+  background-image:linear-gradient(var(--seam) 1px,transparent 1px),
+                   linear-gradient(90deg,var(--seam) 1px,transparent 1px);
+  background-size:72px 72px;
+  mask-image:radial-gradient(ellipse 90% 80% at 50% 40%,black 30%,transparent 75%);
+  -webkit-mask-image:radial-gradient(ellipse 90% 80% at 50% 40%,black 30%,transparent 75%);
+}
+.hero-in{position:relative;padding:6rem 0 5rem;width:100%}
+.eyebrow{
+  font-family:var(--mono);font-size:.75rem;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--gauge);display:flex;align-items:center;gap:.9rem;margin-bottom:1.6rem;
+}
+.eyebrow::before{content:"";width:34px;height:1px;background:var(--gauge);display:inline-block;transform-origin:left}
+.h-line{overflow:hidden;display:block}
+h1{
+  font-family:var(--display);font-weight:800;
+  font-size:clamp(3.2rem,11vw,8.5rem);
+  line-height:.92;letter-spacing:.005em;text-transform:uppercase;
+}
+h1 .h-inner{display:block;will-change:transform}
+h1 em{font-style:normal;color:var(--torch)}
+.hero-sub{
+  max-width:34rem;margin-top:2rem;color:var(--dust);font-size:clamp(1rem,1.4vw,1.15rem);
+}
+.hero-sub strong{color:var(--bone);font-weight:600}
+.hero-cta{display:flex;gap:1rem;margin-top:2.5rem;flex-wrap:wrap}
+.btn{
+  font-family:var(--mono);font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;
+  padding:.95rem 1.7rem;text-decoration:none;border:1px solid var(--torch);
+  transition:transform .2s,background .2s,color .2s;display:inline-block;
+}
+.btn-fill{background:var(--torch);color:var(--iron);font-weight:500}
+.btn-fill:hover{background:var(--torch-deep);border-color:var(--torch-deep);transform:translateY(-2px)}
+.btn-ghost{color:var(--torch)}
+.btn-ghost:hover{background:rgba(255,160,46,.1);transform:translateY(-2px)}
+.hero-spec{
+  position:absolute;right:clamp(1rem,4vw,4rem);bottom:2.2rem;
+  font-family:var(--mono);font-size:.65rem;color:var(--dust);
+  letter-spacing:.14em;text-align:right;line-height:2;
+}
+.hero-spec b{color:var(--gauge);font-weight:500}
+
+/* ---------- ticker ---------- */
+.ticker{
+  border-top:1px solid var(--seam);border-bottom:1px solid var(--seam);
+  background:var(--gunmetal);overflow:hidden;padding:.9rem 0;position:relative;
+}
+.ticker::before,.ticker::after{
+  content:"";position:absolute;top:0;bottom:0;width:8px;
+  background:repeating-linear-gradient(45deg,var(--torch) 0 6px,var(--iron) 6px 12px);
+}
+.ticker::before{left:0}.ticker::after{right:0}
+.ticker-track{display:flex;width:max-content;will-change:transform}
+.ticker-track span{
+  font-family:var(--mono);font-size:.78rem;letter-spacing:.2em;color:var(--dust);
+  text-transform:uppercase;padding:0 1.6rem;white-space:nowrap;
+}
+.ticker-track span i{color:var(--torch);font-style:normal;padding-right:1.6rem}
+
+/* ---------- sections ---------- */
+section{padding:clamp(4.5rem,9vw,8rem) 0}
+.sec-head{margin-bottom:clamp(2.5rem,5vw,4.5rem)}
+h2{
+  font-family:var(--display);font-weight:700;text-transform:uppercase;
+  font-size:clamp(2.4rem,6vw,4.5rem);line-height:1;
+}
+.sec-head p{color:var(--dust);max-width:36rem;margin-top:1rem}
+
+/* ---------- work orders (projects) ---------- */
+.order{
+  border:1px solid var(--seam);background:var(--gunmetal);
+  margin-bottom:2.25rem;position:relative;
+  display:grid;grid-template-columns:170px 1fr;
+  transition:border-color .25s,transform .25s;
+}
+.order:hover{border-color:var(--torch);transform:translateY(-3px)}
+.order-tab{
+  border-right:1px solid var(--seam);padding:1.6rem 1.2rem;
+  display:flex;flex-direction:column;justify-content:space-between;gap:1.5rem;
+}
+.order-no{font-family:var(--mono);font-size:.7rem;color:var(--dust);letter-spacing:.14em;line-height:2}
+.order-no b{display:block;color:var(--gauge);font-size:1rem;font-weight:500}
+.stamp{
+  font-family:var(--mono);font-size:.68rem;letter-spacing:.2em;font-weight:500;
+  border:2px solid var(--stamp);color:var(--stamp);padding:.35rem .55rem;
+  transform:rotate(-6deg);align-self:flex-start;will-change:transform,opacity;
+}
+.stamp.amber{border-color:var(--torch);color:var(--torch)}
+.order-body{padding:1.7rem 2rem 1.9rem}
+.order-body h3{
+  font-family:var(--display);font-weight:700;font-size:clamp(1.7rem,3vw,2.4rem);
+  text-transform:uppercase;letter-spacing:.02em;line-height:1;
+}
+.order-role{font-family:var(--mono);font-size:.72rem;color:var(--torch);letter-spacing:.16em;text-transform:uppercase;margin:.55rem 0 1rem}
+.order-body p{color:var(--dust);max-width:46rem}
+.spec-row{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1.3rem}
+.spec{
+  font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;color:var(--bone);
+  border:1px solid var(--seam);padding:.3rem .65rem;background:var(--iron);
+}
+.order-links{display:flex;gap:1.4rem;margin-top:1.5rem}
+.order-links a{
+  font-family:var(--mono);font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--gauge);text-decoration:none;border-bottom:1px solid transparent;transition:border-color .2s,color .2s;
+}
+.order-links a:hover{color:var(--torch);border-color:var(--torch)}
+
+/* ---------- materials (skills) ---------- */
+.mat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:1px;background:var(--seam);border:1px solid var(--seam)}
+.mat{
+  background:var(--iron);padding:1.5rem 1.3rem;transition:background .25s;
+}
+.mat:hover{background:var(--gunmetal)}
+.mat b{font-family:var(--display);font-weight:700;font-size:1.25rem;text-transform:uppercase;letter-spacing:.03em;display:block}
+.mat span{font-family:var(--mono);font-size:.66rem;color:var(--dust);letter-spacing:.12em;text-transform:uppercase;display:block;margin-top:.45rem}
+
+/* ---------- about ---------- */
+.about-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:clamp(2rem,5vw,5rem);align-items:start}
+.about-grid p{color:var(--dust);margin-bottom:1.2rem}
+.about-grid p strong{color:var(--bone)}
+.pull{
+  border-left:3px solid var(--torch);padding:1.4rem 1.6rem;background:var(--gunmetal);
+  font-family:var(--display);font-weight:500;font-size:clamp(1.3rem,2.2vw,1.7rem);
+  line-height:1.25;text-transform:uppercase;letter-spacing:.02em;
+}
+.pull small{display:block;font-family:var(--mono);font-size:.65rem;color:var(--dust);letter-spacing:.16em;margin-top:1rem;text-transform:uppercase}
+
+/* ---------- contact ---------- */
+.contact{border-top:1px solid var(--seam);text-align:left}
+.contact h2 em{font-style:normal;color:var(--torch)}
+.contact-links{display:flex;gap:1rem;flex-wrap:wrap;margin-top:2.4rem}
+footer{
+  border-top:1px solid var(--seam);padding:1.6rem 0;
+  font-family:var(--mono);font-size:.68rem;color:var(--dust);letter-spacing:.14em;
+  display:flex;justify-content:space-between;flex-wrap:wrap;gap:.5rem;
+}
+
+/* ---------- reveal defaults (no-JS safe) ---------- */
+.rv{opacity:1}
+
+/* ---------- responsive ---------- */
+@media(max-width:880px){
+  .rail{display:none}
+  .shell{margin-left:0}
+  .bar{display:block}
+  .order{grid-template-columns:1fr}
+  .order-tab{flex-direction:row;align-items:center;border-right:none;border-bottom:1px solid var(--seam);padding:1.1rem 1.4rem}
+  .about-grid{grid-template-columns:1fr}
+  .hero-spec{display:none}
+  .nav-links{gap:1.1rem}
+  .nav-links li:nth-child(3){display:none}
+}
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation:none!important;transition:none!important}
+}
+</style>
+</head>
+<body>
+
+<!-- tape-measure scroll rail -->
+<aside class="rail" aria-hidden="true">
+  <div class="rail-ticks"><div class="rail-marker" id="railMarker"></div></div>
+  <div class="rail-readout">DEPTH <strong id="railPct">0%</strong></div>
+</aside>
+<div class="bar" aria-hidden="true"><i id="barFill"></i></div>
+
+<div class="shell">
+
+<nav>
+  <div class="nav-in">
+    <a class="brand" href="#top">M<span>/</span>LEAHY</a>
+    <ul class="nav-links">
+      <li><a href="#work">Build record</a></li>
+      <li><a href="#materials">Materials</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ============ HERO ============ -->
+<header class="hero" id="top">
+  <canvas id="sparks"></canvas>
+  <div class="hero-grid"></div>
+  <div class="wrap hero-in">
+    <p class="eyebrow" id="eyebrow">Frontend developer — Barstow, CA</p>
+    <h1 aria-label="Built to spec. Shipped to production.">
+      <span class="h-line"><span class="h-inner">Built to spec.</span></span>
+      <span class="h-line"><span class="h-inner">Shipped to</span></span>
+      <span class="h-line"><span class="h-inner"><em>production.</em></span></span>
+    </h1>
+    <p class="hero-sub rv" id="heroSub">
+      I came to software from <strong>construction and industrial automation</strong> 
+      , fields where you learn fast that every system has a root cause worth finding.
+      Now I build React and Next.js products the same way: measured twice, deployed live.
+    </p>
+    <div class="hero-cta rv" id="heroCta">
+      <a class="btn btn-fill" href="#work">Inspect the work</a>
+      <a class="btn btn-ghost" href="#contact">Get in touch</a>
+    </div>
+  </div>
+  <div class="hero-spec">
+    <b>SPEC</b> REACT / NEXT.JS / TS<br>
+    <b>TOLERANCE</b> ZERO UNHANDLED STATES<br>
+    <b>STATUS</b> OPEN TO WORK
+  </div>
+</header>
+
+<!-- ============ TICKER ============ -->
+<div class="ticker" aria-hidden="true">
+  <div class="ticker-track" id="tickerTrack"></div>
+</div>
+
+<!-- ============ PROJECTS ============ -->
+<section id="work">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <p class="eyebrow">Work orders</p>
+      <h2>The build record</h2>
+      <p>Every job below is deployed and live, not a tutorial, not a mockup. Open them. Break them if you can.</p>
+    </div>
+
+    <article class="order rv">
+      <div class="order-tab">
+        <div class="order-no">JOB NO.<b>WO-004</b></div>
+        <div class="stamp">● LIVE</div>
+      </div>
+      <div class="order-body">
+        <h3>Vestige</h3>
+        <p class="order-role">Founder / sole builder, decision archaeology for codebases</p>
+        <p>A Git history analysis tool that reads repositories instead of measuring them.
+        It reconstructs the <em>why</em> behind undocumented changes, tiered High / Medium / Low
+        confidence findings, inference flags, and blast-radius scoping, so the first answer a
+        new engineer gets isn't "ask whoever wrote it."</p>
+        <div class="spec-row">
+          <span class="spec">Next.js</span><span class="spec">TypeScript</span><span class="spec">RAG pipeline</span><span class="spec">Claude API</span><span class="spec">GSAP</span>
+        </div>
+        <div class="order-links">
+          <a href="https://vestige-azure.vercel.app" target="_blank" rel="noopener">Visit site ↗</a>
+          <a href="https://github.com/mleahy79/vestige" target="_blank" rel="noopener">Source ↗</a>
+        </div>
+      </div>
+    </article>
+
+    <article class="order rv">
+      <div class="order-tab">
+        <div class="order-no">JOB NO.<b>WO-003</b></div>
+        <div class="stamp">● LIVE</div>
+      </div>
+      <div class="order-body">
+        <h3>Summarist</h3>
+        <p class="order-role">Full-stack build, subscription book-summary platform</p>
+        <p>A complete Blinkist-class product: Firebase auth, Redux Toolkit state, Stripe
+        subscriptions with tier detection, audio player, skeleton loading on every page.
+        The whole revenue loop works — sign up, subscribe, consume content.</p>
+        <div class="spec-row">
+          <span class="spec">Next.js App Router</span><span class="spec">TypeScript</span><span class="spec">Firebase</span><span class="spec">Redux Toolkit</span><span class="spec">Stripe</span>
+        </div>
+        <div class="order-links">
+          <a href="https://summarist-coral.vercel.app" target="_blank" rel="noopener">Visit site ↗</a>
+          <a href="https://github.com/mleahy79/summarist" target="_blank" rel="noopener">Source ↗</a>
+        </div>
+      </div>
+    </article>
+
+    <article class="order rv">
+      <div class="order-tab">
+        <div class="order-no">JOB NO.<b>WO-002</b></div>
+        <div class="stamp">● LIVE</div>
+      </div>
+      <div class="order-body">
+        <h3>SustainRx</h3>
+        <p class="order-role">Solo build, codebase health diagnostics</p>
+        <p>Point it at a repository and it writes the chart: a diagnostic read of codebase
+        health behind a GitHub OAuth gate, with hard cost controls, token caps and
+        concurrency limits, because shipping an AI product means engineering the bill, too.</p>
+        <div class="spec-row">
+          <span class="spec">React</span><span class="spec">GitHub OAuth</span><span class="spec">Serverless</span><span class="spec">LLM cost controls</span>
+        </div>
+        <div class="order-links">
+          <a href="https://git-story-nine.vercel.app" target="_blank" rel="noopener">Visit site ↗</a>
+          <a href="https://github.com/mleahy79/gitstory" target="_blank" rel="noopener">Source ↗</a>
+        </div>
+      </div>
+    </article>
+
+    <article class="order rv">
+      <div class="order-tab">
+        <div class="order-no">JOB NO.<b>WO-001</b></div>
+        <div class="stamp amber">● CONCEPT</div>
+      </div>
+      <div class="order-body">
+        <h3>CareerSwift Redesign</h3>
+        <p class="order-role">Unsolicited redesign, shipped before being asked</p>
+        <p>A speculative landing-page rebuild for a real startup, matching their brand voice
+        their own website was missing. Built, deployed, and sent straight to the founder
+        because showing value beats describing it.</p>
+        <div class="spec-row">
+          <span class="spec">React</span><span class="spec">TypeScript</span><span class="spec">Vite</span><span class="spec">Tailwind</span><span class="spec">GitHub Pages CI</span>
+        </div>
+        <div class="order-links">
+          <a href="https://mleahy79.github.io/careerswift-project" target="_blank" rel="noopener">Visit site ↗</a>
+          <a href="https://github.com/mleahy79" target="_blank" rel="noopener">Source ↗</a>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ============ MATERIALS ============ -->
+<section id="materials" style="background:var(--gunmetal);border-top:1px solid var(--seam);border-bottom:1px solid var(--seam)">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <p class="eyebrow">Materials &amp; methods</p>
+      <h2>What I build with</h2>
+      <p>The same rule as the fabrication shop: know your materials, or they'll surprise you on install day.</p>
+    </div>
+    <div class="mat-grid rv" id="matGrid">
+      <div class="mat"><b>React</b><span>Component systems</span></div>
+      <div class="mat"><b>Next.js</b><span>App Router / SSR</span></div>
+      <div class="mat"><b>TypeScript</b><span>Typed contracts</span></div>
+      <div class="mat"><b>JavaScript</b><span>Logic / DOM manipulation</span></div>
+      <div class="mat"><b>Firebase</b><span>Auth / Firestore</span></div>
+      <div class="mat"><b>Redux Toolkit</b><span>State management</span></div>
+      <div class="mat"><b>Stripe</b><span>Payments / tiers</span></div>
+      <div class="mat"><b>Tailwind</b><span>Design systems</span></div>
+      <div class="mat"><b>GSAP</b><span>Motion / ScrollTrigger</span></div>
+      <div class="mat"><b>Git</b><span>Multi-remote workflows</span></div>
+      <div class="mat"><b>REST APIs</b><span>Integration / cost control</span></div>
+      <div class="mat"><b>Vercel</b><span>CI / deployment</span></div>
+      <div class="mat"><b>Jest</b><span>Testing</span></div>
+      <div class="mat"><b>CSS3</b><span>Styling</span></div>
+      <div class="mat"><b>HTML5</b><span>Markup</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ABOUT ============ -->
+<section id="about">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <p class="eyebrow">Background</p>
+      <h2>From the trades to the terminal</h2>
+    </div>
+    <div class="about-grid">
+      <div class="rv">
+        <p>Before software, I built things you could stand on. <strong>Construction, tile and
+        granite fabrication, industrial automation and maintenance</strong>, work where a
+        measurement error doesn't throw a console warning, it costs material and time.</p>
+        <p>That background didn't get left behind; it became the method. I trace problems to
+        root causes instead of patching symptoms. I check the wiring before blaming the
+        component. I treat a messy commit history the way I'd treat an old job site as
+        evidence of how the thing was really built.</p>
+        <p>Trained at <strong>FES Institute</strong>, now shipping production React with live
+        users, live payments, and live consequences. Off the clock: composing in GarageBand,
+        drawing pixel-art sprites for a Python space shooter, and riding motorcycles through
+        the desert.</p>
+      </div>
+      <div class="pull rv">
+        "Every system has a root cause worth finding."
+        <small>The rule that transferred from automation to software</small>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section class="contact" id="contact">
+  <div class="wrap rv">
+    <p class="eyebrow">Next job</p>
+    <h2>Your team needs a builder.<br><em>I'm taking work orders.</em></h2>
+    <p style="color:var(--dust);max-width:34rem;margin-top:1.2rem">
+      Looking for a frontend role where shipped products count for more than years on a résumé.
+      If that's your team, let's talk.
+    </p>
+    <div class="contact-links">
+      <a class="btn btn-fill" href="mailto:mleahy79@icloud.com">Email me</a>
+      <a class="btn btn-ghost" href="https://www.linkedin.com/in/mitchell-leahy-6aa7093b8" target="_blank" rel="noopener">LinkedIn</a>
+      <a class="btn btn-ghost" href="https://github.com/mleahy79" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap" style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:.5rem;width:100%">
+    <span>© 2026 MITCHELL LEAHY</span>
+    <span>MEASURED TWICE · DEPLOYED ONCE</span>
+  </div>
+</footer>
+
+</div><!-- /shell -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
+const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* ============ ticker content ============ */
+(() => {
+  const items = ['React','Next.js','TypeScript','Firebase','Redux Toolkit','Stripe', 'JavaScript', 'Tailwind','GSAP','Vercel','Jest'];
+  const track = document.getElementById('tickerTrack');
+  let html = '';
+  for (let r = 0; r < 4; r++) items.forEach(t => html += `<span><i>▸</i>${t}</span>`);
+  track.innerHTML = html;
+})();
+
+/* ============ spark canvas (grinder embers) ============ */
+(() => {
+  const cv = document.getElementById('sparks');
+  const ctx = cv.getContext('2d');
+  let W, H, parts = [], raf;
+  const COUNT = () => Math.min(70, Math.floor(window.innerWidth / 18));
+
+  function resize() {
+    const dpr = 1;
+    W = cv.clientWidth; H = cv.clientHeight;
+    cv.width = W * dpr; cv.height = H * dpr;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  }
+  function spawn(initial) {
+    return {
+      x: Math.random() * W,
+      y: initial ? Math.random() * H : H + 10,
+      vx: (Math.random() - .5) * .35,
+      vy: -(.4 + Math.random() * 1.1),
+      r: .6 + Math.random() * 1.7,
+      life: 0,
+      max: 280 + Math.random() * 240,
+      hue: 28 + Math.random() * 14
+    };
+  }
+  function tick() {
+    ctx.clearRect(0, 0, W, H);
+    for (const p of parts) {
+      p.x += p.vx; p.y += p.vy; p.life++;
+      p.vx += (Math.random() - .5) * .02;
+      const a = Math.max(0, 1 - p.life / p.max) * .85;
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fillStyle = `hsla(${p.hue},100%,62%,${a})`;
+      ctx.fill();
+      if (p.life > p.max || p.y < -12) Object.assign(p, spawn(false));
+    }
+    raf = requestAnimationFrame(tick);
+  }
+  resize();
+  window.addEventListener('resize', resize);
+  if (!reduced) {
+    parts = Array.from({length: COUNT()}, () => spawn(true));
+    tick();
+    document.addEventListener('visibilitychange', () =>
+      document.hidden ? cancelAnimationFrame(raf) : tick());
+  }
+})();
+
+/* ============ scroll rail / progress bar ============ */
+(() => {
+  const marker = document.getElementById('railMarker');
+  const pct = document.getElementById('railPct');
+  const fill = document.getElementById('barFill');
+  function update() {
+    const max = document.documentElement.scrollHeight - innerHeight;
+    const p = max > 0 ? Math.min(1, scrollY / max) : 0;
+    marker.style.top = (p * 100) + '%';
+    fill.style.width = (p * 100) + '%';
+    pct.textContent = Math.round(p * 100) + '%';
+  }
+  addEventListener('scroll', update, {passive: true});
+  update();
+})();
+
+/* ============ GSAP choreography ============ */
+if (!reduced && window.gsap) {
+  gsap.registerPlugin(ScrollTrigger);
+
+  /* hero load: beams craned into place */
+  gsap.set('.h-inner', {yPercent: 110, rotate: 2});
+  gsap.set('#eyebrow', {opacity: 0, x: -20});
+  gsap.set('#heroSub, #heroCta', {opacity: 0, y: 24});
+  gsap.set('.hero-spec', {opacity: 0});
+
+  gsap.timeline({defaults: {ease: 'power4.out'}})
+    .to('#eyebrow', {opacity: 1, x: 0, duration: .7}, .15)
+    .to('.h-inner', {yPercent: 0, rotate: 0, duration: 1.1, stagger: .13}, .25)
+    .to('#heroSub', {opacity: 1, y: 0, duration: .8}, '-=.5')
+    .to('#heroCta', {opacity: 1, y: 0, duration: .8}, '-=.6')
+    .to('.hero-spec', {opacity: 1, duration: 1}, '-=.4');
+
+  /* ticker conveyor */
+  const track = document.getElementById('tickerTrack');
+  gsap.to(track, {xPercent: -25, duration: 28, ease: 'none', repeat: -1});
+
+  /* generic section reveals */
+  gsap.utils.toArray('.rv').forEach(el => {
+    gsap.from(el, {
+      opacity: 0, y: 42, duration: .9, ease: 'power3.out',
+      scrollTrigger: {trigger: el, start: 'top 86%'}
+    });
+  });
+
+  /* inspection stamps slam in */
+  gsap.utils.toArray('.stamp').forEach(st => {
+    gsap.from(st, {
+      scale: 2.4, opacity: 0, rotate: 8, duration: .55, ease: 'back.in(2.5)',
+      scrollTrigger: {trigger: st, start: 'top 82%'}
+    });
+  });
+
+  /* materials grid cascade */
+  gsap.from('#matGrid .mat', {
+    opacity: 0, y: 26, duration: .55, ease: 'power2.out', stagger: {each: .05, grid: 'auto', from: 'start'},
+    scrollTrigger: {trigger: '#matGrid', start: 'top 85%'}
+  });
+
+  /* parallax drift on hero grid */
+  gsap.to('.hero-grid', {
+    yPercent: 18, ease: 'none',
+    scrollTrigger: {trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true}
+  });
+}
+</script>
+</body>
+</html>
