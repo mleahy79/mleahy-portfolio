@@ -141,7 +141,8 @@ export default function Home() {
             <article className="order rv">
               <div className="order-tab">
                 <div className="order-no">JOB NO.<b>WO-001</b></div>
-                <div className="stamp amber">● CONCEPT</div>
+                <div className="stamp">● LIVE</div>
+                <div className="stamp amber">●  CONCEPT</div>
               </div>
               <div className="order-body">
                 <h3>CareerSwift Redesign</h3>
