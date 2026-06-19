@@ -86,6 +86,7 @@ export default function ChatWidget() {
 
   return (
     <>
+      {open && <div className="chat-backdrop" onClick={() => setOpen(false)} aria-hidden="true" />}
       {open && (
         <div className="chat-panel" role="dialog" aria-label="Chat with Mitch's AI">
           <div className="chat-header">

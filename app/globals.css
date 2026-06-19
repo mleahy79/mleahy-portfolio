@@ -338,8 +338,17 @@ footer {
 .chat-send:disabled { opacity: .4; cursor: not-allowed; }
 .chat-send svg { width: 18px; height: 18px; }
 
+.chat-backdrop { display: none; }
+
 /* ---------- responsive ---------- */
 @media (max-width: 880px) {
+  .chat-backdrop {
+    display: block;
+    position: fixed; inset: 0; z-index: 99;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+  }
   .rail { display: none; }
   .shell { margin-left: 0; }
   .bar { display: block; }
