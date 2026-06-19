@@ -358,7 +358,7 @@ footer {
   .hero-spec { display: none; }
   .nav-links { gap: 1.1rem; }
   .nav-links li:nth-child(3) { display: none; }
-  .chat-panel { right: 1rem; bottom: 5.5rem; }
+  .chat-panel { left: 0.75rem; right: 0.75rem; bottom: 5.5rem; width: auto; }
   .chat-bubble { bottom: 1.5rem; right: 1rem; }
 }
 @media (prefers-reduced-motion: reduce) {
