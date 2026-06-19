@@ -10,14 +10,14 @@ export const metadata: Metadata = {
     type: 'website',
     siteName: 'Mitchell Leahy',
     title: 'Mitchell Leahy — Frontend Developer',
-    description: 'Ask my portfolio anything.',
+    description: 'Frontend developer building AI-powered SaaS tools. React, Next.js, TypeScript. Ask my portfolio anything.',
     url: 'https://mleahy.dev',
     images: [{ url: '/og-image.png', width: 1200, height: 630 }],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Mitchell Leahy — Frontend Developer',
-    description: 'Ask my portfolio anything.',
+    description: 'Frontend developer building AI-powered SaaS tools. React, Next.js, TypeScript. Ask my portfolio anything.',
     images: ['/og-image.png'],
   },
 };
