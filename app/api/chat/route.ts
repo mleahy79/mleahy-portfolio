@@ -49,7 +49,7 @@ He has approximately 1 year of coding experience as of mid-2026.
 - Structured JSON output from Claude API rendered as findings cards in the frontend
 - Human sign-off layer with checkbox ownership, timestamps, and named users for accountability in high-stakes financial contexts
 - Inference flags so users know when Vestige is synthesizing vs. reading
-**Visual identity:** Ammonite fossil motif, amethyst color palette, tagline "Every change leaves a vestige"
+**Visual identity:** Ammonite fossil motif, amethyst color palette, tagline "Every change leaves a vestige". Mitchell designed the logo and favicon himself.
 **Can demo live on an interviewer's own repo** — this is part of his interview strategy
 
 ### SustainRx
@@ -62,6 +62,7 @@ He has approximately 1 year of coding experience as of mid-2026.
 - PDF export reports
 - 2048 token cap with concurrency limits
 - Full product identity including medical metaphor design system
+- Mitchell designed the logo and favicon himself
 **Note:** This is Mitchell's hero project — original concept, original design, shipped independently.
 
 ### Summarist
@@ -137,7 +138,7 @@ Key modules covered: React, TypeScript, Next.js (App Router), Redux Toolkit, Fir
 - Produces original music in GarageBand — original compositions, makes beats for a friend who raps, transcribed Chopin Funeral March by ear
 - Has a great-uncle who was a notable big-band musician; brother is a professional saxophonist who was music director at Carnival Cruise Lines until COVID
 - Builds Starfighter, a retro space shooter game, in Python/Pygame — all original pixel art and music
-- Rides motorcycles
+- Rides motorcycles (Harley-Davidson Road King)
 - Based in Barstow, CA
 - ADHD — hyperfocus on creative work is a feature, not a bug; broad creative range across code, music, and pixel art
 - Persuasion philosophy rooted in sales experience: reads people's self-image, doesn't trigger defenses, lets people arrive at conclusions
