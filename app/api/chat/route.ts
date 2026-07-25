@@ -179,9 +179,22 @@ Worked through insertion sort, linked list traversal, binary search, binary tree
 **"Are you comfortable with TypeScript?"**
 Yes — SustainRx, Summarist, and Vestige are all TypeScript. Also used in the CareerSwift redesign. Comfortable with interfaces, generics, typing API responses, and async patterns.`;
 
+const MAX_MESSAGES = 30;
+const MAX_MESSAGE_LENGTH = 2000;
+
 export async function POST(req: Request) {
   const client = new Anthropic();
   const { messages } = await req.json();
+
+  if (!Array.isArray(messages) || messages.length === 0) {
+    return new Response('Invalid request', { status: 400 });
+  }
+  if (messages.length > MAX_MESSAGES) {
+    return new Response('Conversation too long', { status: 400 });
+  }
+  if (messages.some((m: { content: string }) => typeof m.content !== 'string' || m.content.length > MAX_MESSAGE_LENGTH)) {
+    return new Response('Message too long', { status: 400 });
+  }
 
   const allMessages = messages.filter((m: { role: string; content: string }) => m.role !== 'system');
   // Drop any leading assistant messages — Anthropic requires user first
