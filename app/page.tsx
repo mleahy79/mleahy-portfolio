@@ -60,7 +60,7 @@ export default function Home() {
             <div className="sec-head rv">
               <p className="eyebrow">Work orders</p>
               <h2>The build record</h2>
-              <p>Every job below is deployed and live, not a tutorial, not a mockup. Open them. Break them if you can.</p>
+              <p>Every job below is deployed and live. I created Vestige and SustainRx, concept and design all the way down to the logo and favicons. Open them. Break them if you can.</p>
             </div>
 
             <article className="order rv">
@@ -166,6 +166,7 @@ export default function Home() {
           </div>
         </section>
 
+
         {/* MATERIALS */}
         <section id="materials" style={{ background: 'var(--gunmetal)', borderTop: '1px solid var(--seam)', borderBottom: '1px solid var(--seam)' }}>
           <div className="wrap">
@@ -212,7 +213,16 @@ export default function Home() {
                 evidence of how the thing was really built.</p>
                 <p>Trained at <strong>FES Institute</strong>, now shipping production React with live
                 users, live payments, and live consequences. Off the clock: composing in GarageBand,
-                drawing pixel-art sprites for a Python space shooter, and riding motorcycles through
+                drawing pixel-art sprites for a{' '}
+                <a
+                  href="https://mleahy79.itch.io/starfighter"
+                  target="_blank"
+                  rel="noopener"
+                  className="inline-egg"
+                  title="Play Starfighter"
+                >
+                  Python space shooter
+                </a>, and riding motorcycles through
                 the desert.</p>
               </div>
               <div className="pull rv">
@@ -243,7 +253,19 @@ export default function Home() {
         <footer>
           <div className="wrap" style={{ display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap', gap: '.5rem', width: '100%' }}>
             <span>© 2026 MITCHELL LEAHY</span>
-            <span>MEASURED TWICE · DEPLOYED ONCE</span>
+            <span>
+              MEASURED TWICE · DEPLOYED ONCE{' '}
+              <a
+                href="https://mleahy79.itch.io/starfighter"
+                target="_blank"
+                rel="noopener"
+                className="easter-egg"
+                title="Starfighter"
+                aria-label="Starfighter (side project)"
+              >
+                ✦
+              </a>
+            </span>
           </div>
         </footer>
       </div>

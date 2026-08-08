@@ -237,6 +237,18 @@ footer {
   font-family: var(--mono); font-size: .68rem; color: var(--dust); letter-spacing: .14em;
   display: flex; justify-content: space-between; flex-wrap: wrap; gap: .5rem;
 }
+.easter-egg {
+  color: var(--dust); text-decoration: none; opacity: .35;
+  transition: opacity .3s ease, color .3s ease;
+}
+.easter-egg:hover, .easter-egg:focus-visible { opacity: 1; color: var(--torch); }
+
+.inline-egg {
+  color: inherit; text-decoration: underline dotted;
+  text-underline-offset: .2em; text-decoration-color: var(--seam);
+  transition: color .2s ease, text-decoration-color .2s ease;
+}
+.inline-egg:hover, .inline-egg:focus-visible { color: var(--torch); text-decoration-color: var(--torch); }
 
 /* ---------- reveal defaults ---------- */
 .rv { opacity: 1; }
