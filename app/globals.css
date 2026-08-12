@@ -82,8 +82,14 @@ nav {
 .nav-links a {
   font-family: var(--mono); font-size: .75rem; letter-spacing: .12em;
   text-transform: uppercase; color: var(--dust); text-decoration: none; transition: color .2s;
+  white-space: nowrap;
 }
 .nav-links a:hover { color: var(--torch); }
+.nav-resume {
+  color: var(--torch); border: 1px solid var(--torch); border-radius: 3px;
+  padding: .3rem .6rem; margin: -0.3rem 0;
+}
+.nav-resume:hover { color: var(--iron); background: var(--torch); }
 
 /* ---------- hero ---------- */
 .hero { position: relative; min-height: 92svh; display: flex; align-items: center; overflow: hidden; }
@@ -372,6 +378,18 @@ footer {
   .nav-links li:nth-child(3) { display: none; }
   .chat-panel { left: 0.75rem; right: 0.75rem; bottom: 5.5rem; width: auto; }
   .chat-bubble { bottom: 1.5rem; right: 1rem; }
+}
+@media (max-width: 400px) {
+  .brand { font-size: 1.15rem; }
+  .nav-links { gap: .45rem; }
+  .nav-links a { font-size: .6rem; letter-spacing: .04em; }
+  .nav-resume { padding: .25rem .4rem; }
+}
+@media (max-width: 340px) {
+  .brand { font-size: 1rem; }
+  .nav-links { gap: .3rem; }
+  .nav-links a { font-size: .55rem; letter-spacing: .01em; }
+  .nav-resume { padding: .2rem .3rem; }
 }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }

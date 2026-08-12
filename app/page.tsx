@@ -19,6 +19,7 @@ export default function Home() {
               <li><a href="#materials">Materials</a></li>
               <li><a href="#about">About</a></li>
               <li><a href="#contact">Contact</a></li>
+              <li><a className="nav-resume" href="/Mitchell-Leahy-Resume.pdf" target="_blank" rel="noopener">Resume</a></li>
             </ul>
           </div>
         </nav>
@@ -80,7 +81,6 @@ export default function Home() {
                   <span className="spec">TypeScript</span>
                   <span className="spec">RAG pipeline</span>
                   <span className="spec">Claude API</span>
-                  <span className="spec">GSAP</span>
                 </div>
                 <div className="order-links">
                   <a href="https://vestige-azure.vercel.app" target="_blank" rel="noopener">Visit site ↗</a>
