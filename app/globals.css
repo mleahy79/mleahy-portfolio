@@ -86,10 +86,11 @@ nav {
 }
 .nav-links a:hover { color: var(--torch); }
 .nav-resume {
-  color: var(--torch); border: 1px solid var(--torch); border-radius: 3px;
+  color: var(--torch); border: 1px solid var(--torch);
   padding: .3rem .6rem; margin: -0.3rem 0;
+  transition: transform .2s, background .2s, color .2s;
 }
-.nav-resume:hover { color: var(--iron); background: var(--torch); }
+.nav-resume:hover { background: rgba(255,160,46,.1); transform: translateY(-2px); }
 
 /* ---------- hero ---------- */
 .hero { position: relative; min-height: 92svh; display: flex; align-items: center; overflow: hidden; }
