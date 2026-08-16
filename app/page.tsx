@@ -43,6 +43,7 @@ export default function Home() {
             <div className="hero-cta" id="heroCta">
               <a className="btn btn-fill" href="#work">Inspect the work</a>
               <a className="btn btn-ghost" href="#contact">Get in touch</a>
+              <a className="btn btn-ghost" href="/Mitchell-Leahy-Resume.pdf" target="_blank" rel="noopener">Download resume</a>
             </div>
           </div>
           <div className="hero-spec">
@@ -244,9 +245,14 @@ export default function Home() {
             </p>
             <div className="contact-links">
               <a className="btn btn-fill" href="mailto:mitchellleahy046@gmail.com">Email me</a>
+              <a className="btn btn-ghost" href="/Mitchell-Leahy-Resume.pdf" target="_blank" rel="noopener">Download resume</a>
               <a className="btn btn-ghost" href="https://www.linkedin.com/in/mitchell-leahy-6aa7093b8" target="_blank" rel="noopener">LinkedIn</a>
               <a className="btn btn-ghost" href="https://github.com/mleahy79" target="_blank" rel="noopener">GitHub</a>
             </div>
+            <p style={{ color: 'var(--dust)', marginTop: '1rem' }}>
+              Or reach me directly at{' '}
+              <a href="mailto:mitchellleahy046@gmail.com">mitchellleahy046@gmail.com</a>
+            </p>
           </div>
         </section>
 
