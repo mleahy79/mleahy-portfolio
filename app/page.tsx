@@ -24,6 +24,7 @@ export default function Home() {
           </div>
         </nav>
 
+        <main>
         {/* HERO */}
         <header className="hero" id="top">
           <SparkCanvas />
@@ -255,6 +256,7 @@ export default function Home() {
             </p>
           </div>
         </section>
+        </main>
 
         <footer>
           <div className="wrap" style={{ display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap', gap: '.5rem', width: '100%' }}>
