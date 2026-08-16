@@ -8,9 +8,9 @@
   --torch-deep: #d97b12;
   --gauge: #6fb7c9;
   --stamp: #4fae6e;
-  --display: 'Big Shoulders Display', sans-serif;
-  --body: 'IBM Plex Sans', sans-serif;
-  --mono: 'IBM Plex Mono', monospace;
+  --display: var(--font-display), sans-serif;
+  --body: var(--font-body), sans-serif;
+  --mono: var(--font-mono), monospace;
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
